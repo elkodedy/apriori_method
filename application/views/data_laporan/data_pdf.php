@@ -16,8 +16,8 @@
             width: 100%;
         }
 
-        th,
-        td {
+        #data th,
+        #data td {
             text-align: left;
             border: 1px solid black;
             padding: 5px 10px;
@@ -31,11 +31,35 @@
         <?php $arrayMonth = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']; ?>
 
         <h3 style="font-size: 11px;">Laporan Pemakaian Obat <?php echo $arrayMonth[$laporan[0]->bulan] . ' ' . $laporan[0]->tahun; ?></h3>
+        <br>
+        <table border="0">
+            <tr>
+                <td width="100px">Kode Puskesmas</td>
+                <td>: <?php echo $setting[0]->kode_puskesmas ?></td>
+            </tr>
+            <tr>
+                <td>Puskesmas</td>
+                <td>: <?php echo $setting[0]->nama_puskesmas ?></td>
+            </tr>
+            <tr>
+                <td>Kecamatan</td>
+                <td>: <?php echo $setting[0]->kecamatan ?></td>
+            </tr>
+            <tr>
+                <td>Kabupaten / Kota</td>
+                <td>: <?php echo $setting[0]->kabupaten ?></td>
+            </tr>
+            <tr>
+                <td>Provinsi</td>
+                <td>: <?php echo $setting[0]->provinsi ?></td>
+            </tr>
+        </table>
+        <br>
 
         <div id="body">
-            <table>
+            <table id="data">
                 <thead>
-                    <tr>
+                    <tr style="background-color: #7eec98;">
                         <th>
                             <center>No</center>
                         </th>

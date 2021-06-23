@@ -8,6 +8,7 @@ class Data_laporan extends CI_Controller
         parent::__construct();
         $this->load->model('m_data_pemakaian_obat');
         $this->load->model('m_data_obat');
+        $this->load->model('m_data_setting');
         $this->load->helper('array');
         $this->load->library("pagination");
         $this->load->library('form_validation');
@@ -35,6 +36,7 @@ class Data_laporan extends CI_Controller
 
 
         $data['laporan'] = $this->m_data_pemakaian_obat->read_to_pdf($tahun, $bulan);
+        $data['setting'] = $this->m_data_setting->read('');
 
         // $this->load->view('data_laporan/data_pdf', $data);
 

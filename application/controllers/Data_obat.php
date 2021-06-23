@@ -16,7 +16,6 @@ class Data_obat extends CI_Controller
     {
         $data['files'] = $this->m_data_obat->read('');
 
-
         $menu['name'] = "Data Obat";
         $this->load->view('_template/header');
         $this->load->view('_template/sidebar', $menu);

@@ -38,6 +38,12 @@ $menus = array(
         'menuPath' => site_url("data_pengguna"),
         'menuIcon' => 'fas fa-user nav-icon'
     ),
+    array(
+        'menuId' => "data_tentang",
+        'menuName' => "Tentang",
+        'menuPath' => site_url("data_tentang"),
+        'menuIcon' => 'fas fa-user nav-icon'
+    ),
 );
 ?>
 
@@ -47,8 +53,8 @@ $menus = array(
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="<?php echo base_url(); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Puskesmas Kandai</span>
+        <!-- <img src="<?php echo base_url(); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+        <span class="brand-text font-weight-bold pl-3">PUSKESMAS KANDAI</span>
     </a>
 
     <!-- Sidebar -->
@@ -56,10 +62,13 @@ $menus = array(
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?php echo base_url(); ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <!-- <img src="<?php echo base_url(); ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="#" class="d-block">
+                    Admin
+                    <!-- Kepala Puskesmas -->
+                </a>
             </div>
         </div>
 

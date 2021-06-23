@@ -29,9 +29,9 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="<?php echo site_url('data_pemakaian_obat/create') ?>" class="btn-sm btn-primary">Tambah Data</a>
-
-                                    <a href="" class="btn-sm btn-success">Import Data</a>
+                                    <!-- <a href="<?php echo site_url('data_pemakaian_obat/create') ?>" class="btn-sm btn-primary">Tambah Data</a> -->
+                                    <!-- <a href="" class="btn-sm btn-success">Import Data</a> -->
+                                    <a onclick="location.reload();" class="btn btn-sm btn-success">Refresh</a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">

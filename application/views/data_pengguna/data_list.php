@@ -4,22 +4,22 @@
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>DataTables</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">DataTables</li>
-                        </ol>
-                    </div>
+                        <div class="col-sm-6">
+                            <h1>DataTables</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">DataTables</li>
+                            </ol>
+                        </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
 
-        <!-- alert  -->
+            <!-- alert  -->
 
-        <!-- alert  -->
+            <!-- alert  -->
 
 
             <!-- Main content -->
@@ -29,8 +29,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                <a href="<?php echo site_url('data_pengguna/create') ?>" class="btn-sm btn-primary">Tambah Data</a>
-                                
+                                    <a href="<?php echo site_url('data_pengguna/create') ?>" class="btn-sm btn-primary">Tambah Data</a>
+
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -39,40 +39,32 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Username</th>
-                                                <th>Nama lengkap</th>
+                                                <th>Nama Pengguna</th>
                                                 <th>Kategori</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php 
-                                            $no=1;
-                                            foreach( $files as $file ):
-                                        ?>
+                                            <?php
+                                            $no = 1;
+                                            foreach ($files as $file) :
+                                            ?>
 
 
-                                            <tr>
-                                                <td> <?php echo $no?> </td>
-                                                <td> <?php echo $file->username?> </td>
-                                                <td> <?php echo $file->nama_lengkap?> </td>
-                                                <td> <?php echo $file->kategori?> </td>
-                                                <td><a href="<?php echo site_url('data_pengguna/edit/').$file->id_pengguna;?>" class="btn-sm btn-primary">Edit</a>
-                                                <a href="<?php echo site_url('data_pengguna/delete/').$file->id_pengguna;?>" class="btn-sm btn-danger">Hapus</a></td>
-                                            </tr>
-                                        <?php 
-                                            $no++;
+                                                <tr>
+                                                    <td> <?php echo $no ?> </td>
+                                                    <td> <?php echo $file->username ?> </td>
+                                                    <td> <?php echo $file->nama_lengkap ?> </td>
+                                                    <td> <?php echo $file->nama_grup ?> </td>
+                                                    <td><a href="<?php echo site_url('data_pengguna/edit/') . $file->id_pengguna; ?>" class="btn-sm btn-primary">Edit</a>
+                                                        <a href="<?php echo site_url('data_pengguna/delete/') . $file->id_pengguna; ?>" class="btn-sm btn-danger">Hapus</a>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                                $no++;
                                             endforeach;
-                                        ?>
+                                            ?>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Username</th>
-                                                <th>Nama lengkap</th>
-                                                <th>Kategori</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
 
 
@@ -93,5 +85,5 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
+        </div>
+        <!-- ./wrapper -->

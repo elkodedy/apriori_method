@@ -31,9 +31,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Pilih data obat yang akan diprediksi</h5>
+                                    <h5>Pilih data obat yang akan diprediksi <a onclick="location.reload();" class="btn btn-sm btn-success float-right">Refresh</a></h5>
                                 </div>
-
 
                                 <!-- /.card-header -->
                                 <?php echo form_open_multipart('data_prediksi/forecast') ?>
@@ -91,7 +90,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Prediksi "namanya"</button>
                                 </div>
                                 <?php echo form_close() ?>
                             </div>
@@ -100,7 +99,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <?php if (isset($mape)) { ?>
-                                        <label>MAPE = <?php echo $mape  ?></label>
+                                        <label>MAPE = <?php echo number_format((float)$mape, 2, '.', '')  ?></label>
                                         <label class="ml-5">Aplha = <?php echo $alpha  ?></label>
                                         <label class="ml-5">Beta = <?php echo $beta  ?></label>
                                         <label class="ml-5">Gamma = <?php echo $gamma  ?></label>
