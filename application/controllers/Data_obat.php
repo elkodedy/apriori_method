@@ -10,6 +10,23 @@ class Data_obat extends CI_Controller
         $this->load->helper('array');
         $this->load->library("pagination");
         $this->load->library('form_validation');
+        $this->load->library('session');
+
+
+        // kalau tidak login maka
+        $this->load->library('session');
+        if (!($this->session->userdata('id_pengguna'))) {
+            // ALERT
+            $alert = 'Silahkan Melakukan Login!';
+            get_instance()->session->set_flashdata('alert', $alert);
+            redirect('auth/login');
+        }
+        if ($this->session->userdata('id_grup') != 1) {
+            // ALERT
+            $alert = "<script type='text/javascript'>alert('Anda Tidak Punya Akses Ke Halaman Ini!');</script>";
+            get_instance()->session->set_flashdata('alert', $alert);
+            redirect('home_page');
+        }
     }
 
     public function index()
@@ -60,7 +77,11 @@ class Data_obat extends CI_Controller
             $data["satuan"] = $this->input->post('satuan');
 
             $id_obat['id_obat'] = $this->input->post('id_obat');
+
             if ($this->m_data_obat->update($data, $id_obat)) {
+
+                $alert = '<div class="card p-3 bg-success text-white">Berhasil mengubah data obat ' . $data["nama_obat"] . '</div>';
+                get_instance()->session->set_flashdata('alert', $alert);
 
                 redirect(site_url('data_obat'));
                 return;

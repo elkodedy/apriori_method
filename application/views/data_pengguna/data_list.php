@@ -27,10 +27,14 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
+                            <!-- alert  -->
+                            <?php if ($this->session->flashdata('alert')) {
+                                echo $this->session->flashdata("alert");
+                            } ?>
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="<?php echo site_url('data_pengguna/create') ?>" class="btn-sm btn-primary">Tambah Data</a>
-
+                                    <a href="<?php echo site_url('data_pengguna/create') ?>" class="btn btn-sm btn-primary">Tambah Data</a>
+                                    <a onclick="location.reload();" class="btn btn-sm btn-success">Refresh</a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -49,8 +53,6 @@
                                             $no = 1;
                                             foreach ($files as $file) :
                                             ?>
-
-
                                                 <tr>
                                                     <td> <?php echo $no ?> </td>
                                                     <td> <?php echo $file->username ?> </td>

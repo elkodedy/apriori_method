@@ -89,10 +89,12 @@
                         <!-- ./col -->
                     </div>
                     <!-- /.row -->
+
                     <!-- Main row -->
                     <div class="row">
                         <!-- Left col -->
-                        <section class="col-lg-6 connectedSortable">
+                        <section class="col-lg-12 connectedSortable">
+
                             <!-- Custom tabs (Charts with tabs)-->
                             <div class="card">
                                 <div class="card-header">
@@ -104,13 +106,9 @@
                                             <li class="nav-item">
                                                 <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
-
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="tab-content p-0">
@@ -130,23 +128,24 @@
                             <!-- Map card -->
                             <div class="card bg-gradient-primary">
                                 <!-- /.card-body-->
-                                <div class="card-footer bg-transparent">
-                                    <div class="row">
-                                        <div class="col-4 text-center">
-                                            <div id="sparkline-1"></div>
-                                        </div>
-                                        <!-- ./col -->
-                                        <div class="col-4 text-center">
-                                            <div id="sparkline-2"></div>
-                                        </div>
-                                        <!-- ./col -->
-                                        <div class="col-4 text-center">
-                                            <div id="sparkline-3"></div>
-                                        </div>
-                                        <!-- ./col -->
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        <div id="sparkline-1"></div>
+                                        <div class="text-white">Visitors</div>
                                     </div>
-                                    <!-- /.row -->
+                                    <!-- ./col -->
+                                    <div class="col-4 text-center">
+                                        <div id="sparkline-2"></div>
+                                        <div class="text-white">Online</div>
+                                    </div>
+                                    <!-- ./col -->
+                                    <div class="col-4 text-center">
+                                        <div id="sparkline-3"></div>
+                                        <div class="text-white">Sales</div>
+                                    </div>
+                                    <!-- ./col -->
                                 </div>
+                                <!-- /.row -->
                             </div>
                             <!-- /.card -->
 
@@ -154,6 +153,7 @@
                         <!-- right col -->
                     </div>
                     <!-- /.row (main row) -->
+
                 </div>
                 <!-- /.container-fluid -->
             </section>

@@ -6,6 +6,16 @@ class Data_tentang extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('session');
+
+
+        // kalau tidak login maka
+        if (!($this->session->userdata('id_pengguna'))) {
+            // ALERT
+            $alert = 'Silahkan Melakukan Login!';
+            get_instance()->session->set_flashdata('alert', $alert);
+            redirect('auth/login');
+        }
     }
 
     public function index()

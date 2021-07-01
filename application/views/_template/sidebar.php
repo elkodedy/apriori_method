@@ -1,50 +1,75 @@
 <?php
-$menus = array(
-    array(
-        'menuId' => "home",
-        'menuName' => "Beranda",
-        'menuPath' => site_url("home_page"),
-        'menuIcon' => "fas fa-home nav-icon"
-    ),
 
-    array(
-        'menuId' => "data_obat",
-        'menuName' => "Data Obat",
-        'menuPath' => site_url("data_obat"),
-        'menuIcon' => 'fas fa-tablets nav-icon'
-    ),
+if ($this->session->userdata('id_grup') == '1') {
 
-    array(
-        'menuId' => "pemakaian_obat",
-        'menuName' => "Data Pemakaian Obat",
-        'menuPath' => site_url("data_pemakaian_obat"),
-        'menuIcon' => 'fas fa-file nav-icon'
-    ),
-    array(
-        'menuId' => "data_prediksi",
-        'menuName' => "Prediksi",
-        'menuPath' => site_url("data_prediksi"),
-        'menuIcon' => 'fas fa-chart-line nav-icon'
-    ),
-    array(
-        'menuId' => "data_laporan",
-        'menuName' => "Laporan",
-        'menuPath' => site_url("data_laporan"),
-        'menuIcon' => 'fas fa-file nav-icon'
-    ),
-    array(
-        'menuId' => "data_pengguna",
-        'menuName' => "Pengguna",
-        'menuPath' => site_url("data_pengguna"),
-        'menuIcon' => 'fas fa-user nav-icon'
-    ),
-    array(
-        'menuId' => "data_tentang",
-        'menuName' => "Tentang",
-        'menuPath' => site_url("data_tentang"),
-        'menuIcon' => 'fas fa-user nav-icon'
-    ),
-);
+    $menus = array(
+        array(
+            'menuId' => "home",
+            'menuName' => "Beranda",
+            'menuPath' => site_url("home_page"),
+            'menuIcon' => "fas fa-home nav-icon"
+        ),
+
+        array(
+            'menuId' => "data_obat",
+            'menuName' => "Data Obat",
+            'menuPath' => site_url("data_obat"),
+            'menuIcon' => 'fas fa-tablets nav-icon'
+        ),
+
+        array(
+            'menuId' => "pemakaian_obat",
+            'menuName' => "Data Pemakaian Obat",
+            'menuPath' => site_url("data_pemakaian_obat"),
+            'menuIcon' => 'fas fa-list-alt nav-icon'
+        ),
+        array(
+            'menuId' => "data_prediksi",
+            'menuName' => "Prediksi",
+            'menuPath' => site_url("data_prediksi"),
+            'menuIcon' => 'fas fa-chart-line nav-icon'
+        ),
+        array(
+            'menuId' => "data_pengguna",
+            'menuName' => "Pengguna",
+            'menuPath' => site_url("data_pengguna"),
+            'menuIcon' => 'fas fa-user-md nav-icon'
+        ),
+        array(
+            'menuId' => "data_laporan",
+            'menuName' => "Laporan Pemakaian Obat",
+            'menuPath' => site_url("data_laporan"),
+            'menuIcon' => 'fas fa-file-pdf nav-icon'
+        ),
+        array(
+            'menuId' => "data_tentang",
+            'menuName' => "Tentang",
+            'menuPath' => site_url("data_tentang"),
+            'menuIcon' => 'fas fa-tags nav-icon'
+        ),
+    );
+} elseif ($this->session->userdata('id_grup') == '2') {
+    $menus = array(
+        array(
+            'menuId' => "home",
+            'menuName' => "Beranda",
+            'menuPath' => site_url("home_page"),
+            'menuIcon' => "fas fa-home nav-icon"
+        ),
+        array(
+            'menuId' => "data_laporan",
+            'menuName' => "Laporan Pemakaian Obat",
+            'menuPath' => site_url("data_laporan"),
+            'menuIcon' => 'fas fa-file-pdf nav-icon'
+        ),
+        array(
+            'menuId' => "data_tentang",
+            'menuName' => "Tentang",
+            'menuPath' => site_url("data_tentang"),
+            'menuIcon' => 'fas fa-tags nav-icon'
+        ),
+    );
+}
 ?>
 
 
@@ -66,8 +91,7 @@ $menus = array(
             </div>
             <div class="info">
                 <a href="#" class="d-block">
-                    Admin
-                    <!-- Kepala Puskesmas -->
+                    <b><?php echo $this->session->userdata('nama_grup') ?></b>
                 </a>
             </div>
         </div>
@@ -77,8 +101,7 @@ $menus = array(
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-header">MENU</li>
                 <?php
                 foreach ($menus as $menu) :
@@ -86,9 +109,7 @@ $menus = array(
                     <li class="nav-item menu-open">
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a id="<?php echo $menu['menuId']; ?>" href="<?php echo $menu['menuPath']; ?>" class="nav-link <?php if ($name == $menu['menuName']) {
-                                                                                                                                    echo "active";
-                                                                                                                                } ?>">
+                                <a id="<?php echo $menu['menuId']; ?>" href="<?php echo $menu['menuPath']; ?>" class="nav-link <?php if ($name == $menu['menuName']) echo "active"; ?>">
                                     <i class="<?php echo $menu['menuIcon']; ?>"></i>
                                     <p><?php echo $menu['menuName']; ?></p>
                                 </a>

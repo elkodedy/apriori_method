@@ -10,6 +10,22 @@ class Data_pengguna extends CI_Controller
         $this->load->helper('array');
         $this->load->library("pagination");
         $this->load->library('form_validation');
+        $this->load->library('session');
+
+
+        // kalau tidak login maka
+        if (!($this->session->userdata('id_pengguna'))) {
+            // ALERT
+            $alert = 'Silahkan Melakukan Login!';
+            get_instance()->session->set_flashdata('alert', $alert);
+            redirect('auth/login');
+        }
+        if ($this->session->userdata('id_grup') != 1) {
+            // ALERT
+            $alert = "<script type='text/javascript'>alert('Anda Tidak Punya Akses Ke Halaman Ini!');</script>";
+            get_instance()->session->set_flashdata('alert', $alert);
+            redirect('home_page');
+        }
     }
 
     public function index()
@@ -36,10 +52,14 @@ class Data_pengguna extends CI_Controller
             $data["id_grup"] = $this->input->post('id_pengguna');
             $data["nama_lengkap"] = $this->input->post('nama_lengkap');
             $data["username"] = $this->input->post('username');
-            $data["password"] = $this->input->post('password');
+            $data["password"] = md5($this->input->post('password'));
             $data["id_grup"] = $this->input->post('id_grup');
 
             if ($this->m_data_pengguna->create($data)) {
+
+                $alert = '<div class="card p-3 bg-success text-white">Berhasil menambah data pengguna ' . $data["nama_lengkap"] . '</div>';
+                get_instance()->session->set_flashdata('alert', $alert);
+
                 redirect(site_url('data_pengguna'));
                 return;
             }
@@ -57,18 +77,24 @@ class Data_pengguna extends CI_Controller
         if (!empty($this->input->post('nama_lengkap'))) {
             $this->form_validation->set_rules('nama_lengkap', 'nama_lengkap', 'trim|required');
             $this->form_validation->set_rules('username', 'username', 'trim|required');
-            $this->form_validation->set_rules('password', 'password', 'trim|required');
             $this->form_validation->set_rules('id_grup', 'id_grup', 'trim|required');
         }
 
         if ($this->form_validation->run() == true) {
-            $data["nama_lengkap"] = $this->input->post('nama_lengkap');
+
+            if ($this->input->post('password') != "") {
+                $data["password"] = md5($this->input->post('password'));
+            }
+
             $data["username"] = $this->input->post('username');
-            $data["password"] = $this->input->post('password');
+            $data["nama_lengkap"] = $this->input->post('nama_lengkap');
             $data["id_grup"] = $this->input->post('id_grup');
 
             $id_pengguna['id_pengguna'] = $this->input->post('id_pengguna');
             if ($this->m_data_pengguna->update($data, $id_pengguna)) {
+
+                $alert = '<div class="card p-3 bg-success text-white">Berhasil mengubah data pengguna ' . $data["nama_lengkap"] . '</div>';
+                get_instance()->session->set_flashdata('alert', $alert);
 
                 redirect(site_url('data_pengguna'));
                 return;

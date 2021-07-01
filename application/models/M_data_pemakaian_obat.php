@@ -101,4 +101,21 @@ class M_data_pemakaian_obat extends CI_Model
     {
         return $this->db->count_all("data_pemakaian_obat");
     }
+    public function get($id)
+    {
+        $this->db->select('*');
+        $this->db->from('data_pemakaian_obat a');
+        $this->db->join('data_obat b', 'a.id_obat = b.id_obat');
+        $this->db->where('a.id_pemakaian', $id);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return null;
+    }
 }

@@ -45,8 +45,8 @@
                                         <div class="col-12 col-sm-6">
                                             <div class="form-group">
                                                 <label>Nama Obat</label>
-                                                <select class="custom-select form-control-border border-width-2" name="id_obat" required>
-                                                    <option selected disabled>---pilih Obat---</option>
+                                                <select class="custom-select form-control-border border-width-2" name="id_obat" required="required">
+                                                    <!-- <option selected disabled>---pilih Obat---</option> -->
                                                     <?php foreach ($files as $file) {
                                                         echo '<option value="' . $file->id_obat . '">' . $file->nama_obat .  '</option>';
                                                     } ?>
@@ -69,19 +69,19 @@
                                         <div class="col-12 col-sm-3">
                                             <div class="form-group">
                                                 <label>Alfa</label>
-                                                <input type="number" class="form-control" name="alpha" placeholder="Alfa...." min="0" max="1" step="0.01" required>
+                                                <input type="number" class="form-control" name="alpha" placeholder="Alfa...." min="0" max="10" step="0.01" required>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-3">
                                             <div class="form-group">
                                                 <label>Beta</label>
-                                                <input type="number" class="form-control" name="beta" placeholder="Beta...." min="0" max="1" step="0.01" required>
+                                                <input type="number" class="form-control" name="beta" placeholder="Beta...." min="0" max="10" step="0.01" required>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-3">
                                             <div class="form-group">
                                                 <label>Gamma</label>
-                                                <input type="number" class="form-control" name="gamma" placeholder="Gamma...." min="0" max="1" step="0.01" required>
+                                                <input type="number" class="form-control" name="gamma" placeholder="Gamma...." min="0" max="10" step="0.01" required>
                                             </div>
                                         </div>
 

@@ -12,6 +12,16 @@ class Data_laporan extends CI_Controller
         $this->load->helper('array');
         $this->load->library("pagination");
         $this->load->library('form_validation');
+        $this->load->library('session');
+
+
+        // kalau tidak login maka
+        if (!($this->session->userdata('id_pengguna'))) {
+            // ALERT
+            $alert = 'Silahkan Melakukan Login!';
+            get_instance()->session->set_flashdata('alert', $alert);
+            redirect('auth/login');
+        }
     }
 
     public function index()

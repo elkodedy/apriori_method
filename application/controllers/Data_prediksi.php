@@ -12,12 +12,27 @@ class Data_prediksi extends CI_Controller
         $this->load->library("pagination");
         $this->load->library('form_validation');
         $this->load->library('session');
+
+
+        // kalau tidak login maka
+        if (!($this->session->userdata('id_pengguna'))) {
+            // ALERT
+            $alert = 'Silahkan Melakukan Login!';
+            get_instance()->session->set_flashdata('alert', $alert);
+            redirect('auth/login');
+        }
+        if ($this->session->userdata('id_grup') != 1) {
+            // ALERT
+            $alert = "<script type='text/javascript'>alert('Anda Tidak Punya Akses Ke Halaman Ini!');</script>";
+            get_instance()->session->set_flashdata('alert', $alert);
+            redirect('home_page');
+        }
     }
 
     public function index()
     {
 
-        $data['files'] = $this->m_data_obat->read('', '', '');
+        $data['files'] = $this->m_data_obat->read('');
 
         $menu['name'] = "Prediksi";
         $this->load->view('_template/header');
@@ -40,7 +55,7 @@ class Data_prediksi extends CI_Controller
         // GET METHOD, count it baybehhhhh
         $data = $this->method($id_obat, $alpha, $beta, $gamma);
 
-        $data['files'] = $this->m_data_obat->read('', '', '');
+        $data['files'] = $this->m_data_obat->read('');
         $menu['name'] = "Prediksi";
 
 

@@ -10,17 +10,16 @@ class M_data_obat extends CI_Model
         $this->load->database();
     }
 
-    public function read($year)
+    public function read($key)
     {
         $this->db->select('*');
         $this->db->from('data_obat');
-        $query = $this->db->get();
 
-        if ($year != '') {
-            $this->db->where('tahun', $year);
+        if ($key != '') {
+            $this->db->where('id_obat', $key);
         }
 
-        $this->db->order_by('bulan');
+        $query = $this->db->get();
 
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {

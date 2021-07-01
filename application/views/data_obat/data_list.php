@@ -73,7 +73,6 @@
                                                                     <i aria-hidden="true" class="ki ki-close"></i>
                                                                 </button>
                                                             </div>
-                                                            <?php echo form_open("admin/slider/delete") ?>
                                                             <div class="modal-body">
                                                                 Apakah anda yakin akan menghapus obat <?php echo $file->nama_obat; ?> ?
                                                             </div>

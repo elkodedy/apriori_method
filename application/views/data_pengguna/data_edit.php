@@ -65,8 +65,9 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="col-form-label"> Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Masukkan Password ..." value="<?php echo $files[0]->password; ?>">
+                                <label class="col-form-label"> Password</label><br>
+                                <small style="color:red"><i>Kosongkan jika tidak ingin mengubah password</i></small></b></label>
+                                <input type="password" class="form-control" name="password" placeholder="Masukkan Password ..." value="">
                                 <span style="color:red"><?php echo form_error('password'); ?></span>
                             </div>
                         </div>
@@ -75,10 +76,11 @@
                 </div>
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <?php echo form_close() ?>
+                    <a onclick="window.history.back()" class="btn btn-secondary">Kembali</a>
                 </div>
             </div>
-            <?php echo form_close() ?>
 
     </section>
 

@@ -27,6 +27,10 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
+                            <!-- alert  -->
+                            <?php if ($this->session->flashdata('alert')) {
+                                echo $this->session->flashdata("alert");
+                            } ?>
                             <div class="card">
                                 <div class="card-header">
                                     <a href="<?php echo site_url('data_pemakaian_obat/create') ?>" class="btn btn-sm btn-primary">Tambah Data</a>
@@ -80,13 +84,14 @@
                                                     <td> <?php echo $file->persediaan ?> </td>
                                                     <td> <?php echo $file->sisa_stok ?> </td>
                                                     <td> <?php echo $file->persediaan - $file->sisa_stok ?> </td>
-                                                    <td><a href="<?php echo site_url('data_pemakaian_obat/edit/') . $file->id_pemakaian; ?>" class="btn btn-sm btn-primary">Edit</a>
-                                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDelete<?php echo $file->id_obat ?>">Hapus</a>
+                                                    <td>
+                                                        <a href="<?php echo site_url('data_pemakaian_obat/edit/') . $file->id_pemakaian; ?>" class="btn btn-sm btn-primary">Edit</a>
+                                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDelete<?php echo $file->id_pemakaian ?>">Hapus</a>
                                                     </td>
                                                 </tr>
 
                                                 <!-- Modal Delete-->
-                                                <div class="modal fade" id="modalDelete<?php echo $file->id_obat ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                                <div class="modal fade" id="modalDelete<?php echo $file->id_pemakaian ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -95,12 +100,11 @@
                                                                     <i aria-hidden="true" class="ki ki-close"></i>
                                                                 </button>
                                                             </div>
-                                                            <?php echo form_open("admin/slider/delete") ?>
                                                             <div class="modal-body">
                                                                 Apakah anda yakin akan menghapus data ini?
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="<?php echo site_url('data_pemakaian_obat/delete/') . $file->id_obat; ?>" class="btn btn-danger font-weight-bold">Hapus</a>
+                                                                <a href="<?php echo site_url('data_pemakaian_obat/delete/') . $file->id_pemakaian; ?>" class="btn btn-danger font-weight-bold">Hapus</a>
                                                                 <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Batal</button>
                                                             </div>
                                                         </div>
