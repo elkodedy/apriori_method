@@ -17,17 +17,14 @@ $maroon: #d81b60 !default;
 $black: #111 !default;
 $gray-x-light: #d2d6de !default;
 
-$colors: map-merge(
-  (
-    "lightblue": $lightblue,
-    "navy": $navy,
-    "olive": $olive,
-    "lime": $lime,
-    "fuchsia": $fuchsia,
-    "maroon": $maroon,
-  ),
-  $colors
-);
+$colors: map-merge(("lightblue": $lightblue,
+		"navy": $navy,
+		"olive": $olive,
+		"lime": $lime,
+		"fuchsia": $fuchsia,
+		"maroon": $maroon,
+	),
+	$colors);
 
 // LAYOUT
 // --------------------------------------------------------
@@ -48,7 +45,7 @@ $sidebar-custom-padding-y: .5rem !default;
 $boxed-layout-max-width: 1250px !default;
 
 // Body background (Affects main content background only)
-$main-bg: #f4f6f9 !default;
+$main-bg: #827ffe1c !default;
 
 $dark-main-bg: lighten($dark, 7.5%) !important;
 
@@ -138,7 +135,7 @@ $sidebar-light-submenu-active-bg: $sidebar-light-submenu-hover-bg !default;
 // --------------------------------------------------------
 $sidebar-mini-width: ($nav-link-padding-x + $sidebar-padding-x + .8rem) * 2 !default;
 $sidebar-nav-icon-width: $sidebar-mini-width - (($sidebar-padding-x + $nav-link-padding-x) * 2) !default;
-$sidebar-user-image-width: $sidebar-nav-icon-width + ($nav-link-padding-x / 2) !default;
+$sidebar-user-image-width: $sidebar-nav-icon-width+($nav-link-padding-x / 2) !default;
 
 // CONTROL SIDEBAR
 // --------------------------------------------------------
@@ -148,7 +145,8 @@ $control-sidebar-width: $sidebar-width !default;
 // --------------------------------------------------------
 $card-border-color: $gray-100 !default;
 $card-dark-border-color: lighten($gray-900, 10%) !default;
-$card-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !default;
+$card-shadow: 0 0 1px rgba(0, 0, 0, .125),
+0 1px 3px rgba(0, 0, 0, .2) !default;
 $card-title-font-size: 1.1rem !default;
 $card-title-font-size-sm: 1rem !default;
 $card-title-font-weight: $font-weight-normal !default;
@@ -168,11 +166,11 @@ $direct-chat-default-msg-border-color: $gray-x-light !default;
 
 // Z-INDEX
 // --------------------------------------------------------
-$zindex-main-header: $zindex-fixed + 4 !default;
-$zindex-main-sidebar: $zindex-fixed + 8 !default;
-$zindex-main-footer: $zindex-fixed + 2 !default;
-$zindex-control-sidebar: $zindex-fixed + 1 !default;
-$zindex-toasts: $zindex-main-sidebar + 2 !default;
+$zindex-main-header: $zindex-fixed+4 !default;
+$zindex-main-sidebar: $zindex-fixed+8 !default;
+$zindex-main-footer: $zindex-fixed+2 !default;
+$zindex-control-sidebar: $zindex-fixed+1 !default;
+$zindex-toasts: $zindex-main-sidebar+2 !default;
 $zindex-preloader: 9999 !default;
 
 // TRANSITIONS SETTINGS
@@ -204,16 +202,13 @@ $button-border-radius-xs: .15rem !default;
 // ELEVATION
 // --------------------------------------------------------
 $elevations: ();
-$elevations: map-merge(
-  (
-    1: unquote("0 1px 3px " + rgba($black, .12) + ", 0 1px 2px " + rgba($black, .24)),
-    2: unquote("0 3px 6px " + rgba($black, .16) + ", 0 3px 6px " + rgba($black, .23)),
-    3: unquote("0 10px 20px " + rgba($black, .19) + ", 0 6px 6px " + rgba($black, .23)),
-    4: unquote("0 14px 28px " + rgba($black, .25) + ", 0 10px 10px " + rgba($black, .22)),
-    5: unquote("0 19px 38px " + rgba($black, .3) + ", 0 15px 12px " + rgba($black, .22)),
-  ),
-  $elevations
-);
+$elevations: map-merge((1: unquote("0 1px 3px "+ rgba($black, .12) + ", 0 1px 2px "+ rgba($black, .24)),
+		2: unquote("0 3px 6px "+ rgba($black, .16) + ", 0 3px 6px "+ rgba($black, .23)),
+		3: unquote("0 10px 20px "+ rgba($black, .19) + ", 0 6px 6px "+ rgba($black, .23)),
+		4: unquote("0 14px 28px "+ rgba($black, .25) + ", 0 10px 10px "+ rgba($black, .22)),
+		5: unquote("0 19px 38px "+ rgba($black, .3) + ", 0 15px 12px "+ rgba($black, .22)),
+	),
+	$elevations);
 
 // RIBBON
 // --------------------------------------------------------

@@ -58,7 +58,6 @@ class Data_prediksi extends CI_Controller
         $data['files'] = $this->m_data_obat->read('');
         $menu['name'] = "Prediksi";
 
-
         $this->load->view('_template/header');
         $this->load->view('_template/sidebar', $menu);
         $this->load->view('data_prediksi/data_list', $data);
@@ -73,8 +72,9 @@ class Data_prediksi extends CI_Controller
 
         // AMBIL DATA PEMAKAIAN OBAT DARI DATABASE
         $cek = count($this->m_data_pemakaian_obat->read($id_obat, '', '', '')); // cek jumlah bulan data pemakaian obat
+        //cek = 48
         $semua_tahun = $this->m_data_pemakaian_obat->read($id_obat, '', 'tahun', 'tahun'); //ambil semua tahun dari tahun awal sampai tahun terakhir
-
+        //$semua_tahun = [2017, 2018, 2019, 2020]
 
         // CEK JUMLAH DATA PEMAKAIAN OBAT
         if ($cek == null) { // jika data pemakaian obat kosong maka
@@ -82,11 +82,12 @@ class Data_prediksi extends CI_Controller
             get_instance()->session->set_flashdata('alert', $alert);
             redirect('data_prediksi');
         };
-        if ($cek < 48) {  // jika data pemakaian obat kurang dari 48 bulan maka
-            $alert = '<div class="card p-3 mx-3 bg-danger text-white">Data pemakaian obat kurang dari 48 bulan, untuk melakukan prediksi membutuhkan data pemakaian setkurang-kurangnya 48 bulan terakhir</div>';
+        if ($cek < 24) {  // jika data pemakaian obat kurang dari 48 bulan maka
+            $alert = '<div class="card p-3 mx-3 bg-danger text-white">Data pemakaian obat kurang dari 24 bulan, untuk melakukan prediksi membutuhkan data pemakaian setkurang-kurangnya 24 bulan terakhir</div>';
             get_instance()->session->set_flashdata('alert', $alert);
             redirect('data_prediksi');
         };
+
 
         // HITUNG LS
         $ls = $this->m_data_pemakaian_obat->sum_ls($semua_tahun[0]->tahun) / 12; // mendapatkan data ls, dari tahun pertama
@@ -97,15 +98,17 @@ class Data_prediksi extends CI_Controller
 
 
         // MULAI MENGHITUNG UNTUK SEMUA TAHUN
-        $bulan = 1; //inisialisasi bulan ke-
+        $bulan = 1; //inisialisasi bulan ke- || akan jadi index
         foreach ($semua_tahun as $tahun) {  // untuk setiap tahun, lakukan .  .
 
             // AMBIL DATA PEMAKAIAN OBAT PER TAHUN
             $data_tahun = $this->m_data_pemakaian_obat->read($id_obat, $tahun->tahun, '', 'bulan'); // ambil data satu tahun urutkan berdasarkan bulan
 
             // HITUNG PEMAKAIAN OBAT PERTAHUN
+            //looping 12x
             foreach ($data_tahun as $data_bulan) { // untuk setiap bulan, lakukan . .
 
+                // looping pertama $data_bulan = id_obat = 4; id_pemakain = 3; ------------> pemakaian = 6000;
 
                 // DATA UNTUK TAMPIL KE VIEW 'note: tidak berhubungan dengan metode'
                 $data['bulan_ke'][$bulan] = $bulan;
@@ -122,17 +125,18 @@ class Data_prediksi extends CI_Controller
                         $pemakaian_12 = $data_bulan->pemakaian; // data pemakaian bulan ke 12
                     }
                 }
+                //$data['seasoning'][1] = 1.126904
+                //$data['seasoning'][2] = 1.126904
+
+                //$data['seasoning'][12] = 1.126904
 
 
                 // HITUNG BULAN KE 13
                 if ($bulan == 13) { // jika sudah sampai bulan ke 13 maka
-                    $data['level'][13] = $data_bulan->pemakaian / $data['seasoning'][1]; // hitung level 14
+                    $data['level'][13] = $data_bulan->pemakaian / $data['seasoning'][1]; // hitung level 13
                     $data['trend'][13] = ($data_bulan->pemakaian / $data['seasoning'][1]) - ($pemakaian_12 / $data['seasoning'][12]); // hitung trend 14
-                    $data['seasoning'][13] = $gamma * ($data_bulan->pemakaian /
-                        $data['level'][13])
-                        + (1 - $gamma) * $data['seasoning'][1]; // hitung seasoning 13
+                    $data['seasoning'][13] = $gamma * ($data_bulan->pemakaian / $data['level'][13]) + (1 - $gamma) * $data['seasoning'][1]; // hitung seasoning 13
                 }
-
 
                 // HITUNG BULAN SETELAHNYA SAMPAI BULAN TERAKHIR
                 if ($bulan > 13) { // jika sudah sampai bulan ke 14 maka
@@ -155,9 +159,9 @@ class Data_prediksi extends CI_Controller
         }
 
         // note : nilai index sekarang sama dengan total bulan + 1. "contoh untuk kasus ini karena terdapat data 48 bulan, maka nilai index sekarang = 49"
-
         $bulan_terakhir = $bulan - 1;
         $k = 1;  // insialisasi k = 1
+
         foreach ($forecast_bulan as $none) { // untuk setiap bulan, lakukan. 
 
             // MULAI PREDIKSI SELAMA 1 TAHUN KE DEPAN
@@ -184,7 +188,6 @@ class Data_prediksi extends CI_Controller
                 break;
         }
 
-
         $data['alpha'] = $alpha;
         $data['beta'] = $beta;
         $data['gamma'] = $gamma;
@@ -192,11 +195,13 @@ class Data_prediksi extends CI_Controller
 
 
         // ALERT SUCCESS note: tidak berhubungan dengan metode
-        $alert = '<div class="card p-3 mx-3 bg-success text-white">Berikut data prediksi obat ' . $semua_tahun[0]->nama_obat . ' pada tahun ' . ($semua_tahun[count($semua_tahun) - 1]->tahun + 1) . ' dengan tingkat eror sebesar ' . $data['mape'] . '%</div>';
+        $alert = '<div class="card p-3 mx-3 bg-success text-white">Berikut data prediksi obat ' . $semua_tahun[0]->nama_obat . ' pada tahun ' . ($semua_tahun[count($semua_tahun) - 1]->tahun + 1) . ' dengan tingkat eror sebesar ' . number_format((float)$data['mape'], 2, '.', '') . '%</div>';
         get_instance()->session->set_flashdata('alert', $alert);
 
 
         return $data; // mengembalikan semua data
+
+
 
         // FINISH DAN TERIMAKASIH
     }

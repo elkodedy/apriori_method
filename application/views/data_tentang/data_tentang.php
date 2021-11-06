@@ -1,6 +1,4 @@
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -14,12 +12,8 @@
                             </ol>
                         </div>
                     </div>
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
-
-            <!-- alert  -->
-
-            <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -32,10 +26,10 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <h2><b>Aplikasi Prediksi Kebutuhan Obat</b></h2>
-                                        <h4>Menggunakan Metode holt-Winters Multiplicative Exponential Smoothing</h4><br>
+                                        <h4>Menggunakan Metode Apriori</h4><br>
                                         <br>
                                         <b>Dibuat Oleh :</b><br>
-                                        Fanni Apriani (E1E116097)<br>
+                                        Ismiranti Hamsar (E1E117029)<br>
                                         Sebagai Salah Satu Syarat Mencapai Gelar Sarjana Teknik<br>
                                         <br>
                                         Program Studi<br>
@@ -52,15 +46,7 @@
                     </div>
                 </div>
             </section>
-
-
-            <!-- /.content -->
         </div>
-
-        <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar -->
         </div>
-        <!-- ./wrapper -->

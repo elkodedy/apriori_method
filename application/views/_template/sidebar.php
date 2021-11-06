@@ -72,7 +72,21 @@ if ($this->session->userdata('id_grup') == '1') {
 }
 ?>
 
+<style>
+    .main-sidebar {
+        /* background: linear-gradient(to bottom, #827FFE 20%, #4E9EB6 100%); */
+        background: #827FFE;
+    }
 
+    .sidebar a {
+        /* background: linear-gradient(to bottom, #827FFE 20%, #4E9EB6 100%); */
+        color: white !important;
+    }
+
+    .nav-item .active {
+        background-color: rgba(255, 255, 255, .4) !important;
+    }
+</style>
 
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -102,7 +116,7 @@ if ($this->session->userdata('id_grup') == '1') {
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                <li class="nav-header">MENU</li>
+                <li class="nav-header text-light">MENU</li>
                 <?php
                 foreach ($menus as $menu) :
                 ?>
