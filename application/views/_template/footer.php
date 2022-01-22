@@ -13,8 +13,8 @@
 <!-- Sparkline -->
 <script src="<?php echo base_url(); ?>plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="<?php echo base_url(); ?>plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?php echo base_url(); ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- <script src="<?php echo base_url(); ?>plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
 <!-- jQuery Knob Chart -->
 <script src="<?php echo base_url(); ?>plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -25,7 +25,7 @@
 <!-- Summernote -->
 <script src="<?php echo base_url(); ?>plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="<?php echo base_url(); ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -55,23 +55,50 @@
             "lengthChange": false,
             "autoWidth": false,
             "pageLength": 12,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "responsive": true,
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        // $('#tabel_1').DataTable({
-        // "paging": true,
-        // "lengthChange": false,
-        // "searching": false,
-        // "ordering": true,
-        // "info": true,
-        // "autoWidth": false,
-        // "responsive": true,
-        // "responsive": true,
-        // });
+
+        <?php if (isset($kombinasi)) { //PHP
+            for ($i = 1; $i <= $input_jml_kombinasi; $i++) { ?> //PHP
+
+                $("#tabel_analisis_<?php echo $i ?>").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                    "responsive": true,
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        <?php } // PHP
+        } ?> // PHP
 
 
-        $("#tabel_prediksi").DataTable({
-            "pageLength": 12,
-        })
+    });
+
+    $('.btn-kombinasi').click(function() {
+        index = $('.btn-kombinasi').index(this)
+
+        $('.kombinasi-table').hide();
+        $('.kombinasi-table:eq(' + index + ')').show();
+
+        $('.btn-kombinasi').css("background-color", "#acddb7");
+        $('.btn-kombinasi:eq(' + index + ')').css("background-color", "#28a745");
+
     });
 </script>
 </body>

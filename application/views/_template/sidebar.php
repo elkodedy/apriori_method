@@ -23,17 +23,23 @@ if ($this->session->userdata('id_grup') == '1') {
             'menuPath' => site_url("data_pemakaian_obat"),
             'menuIcon' => 'fas fa-list-alt nav-icon'
         ),
-        array(
-            'menuId' => "data_prediksi",
-            'menuName' => "Prediksi",
-            'menuPath' => site_url("data_prediksi"),
-            'menuIcon' => 'fas fa-chart-line nav-icon'
-        ),
+        // array(
+        //     'menuId' => "data_prediksi",
+        //     'menuName' => "Prediksi",
+        //     'menuPath' => site_url("data_prediksi"),
+        //     'menuIcon' => 'fas fa-chart-line nav-icon'
+        // ),
         array(
             'menuId' => "data_pengguna",
             'menuName' => "Pengguna",
             'menuPath' => site_url("data_pengguna"),
             'menuIcon' => 'fas fa-user-md nav-icon'
+        ),
+        array(
+            'menuId' => "data_analisis",
+            'menuName' => "Analisis",
+            'menuPath' => site_url("data_analisis"),
+            'menuIcon' => 'fas fa-chart-line nav-icon'
         ),
         array(
             'menuId' => "data_laporan",
@@ -133,9 +139,6 @@ if ($this->session->userdata('id_grup') == '1') {
                 <?php
                 endforeach;
                 ?>
-
-
-
                 <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

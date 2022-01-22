@@ -9,11 +9,8 @@ class M_data_pemakaian_obat extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-    public function create($data_obat)
-    {
-        return $this->db->insert('data_pemakaian_obat', $data_obat);
-    }
-    public function read($key, $year, $group_by, $order_by)
+
+    public function read($key, $bulan, $group_by, $order_by)
     {
         $this->db->select('*');
         $this->db->from('data_pemakaian_obat a');
@@ -22,8 +19,8 @@ class M_data_pemakaian_obat extends CI_Model
         if ($key != '') {
             $this->db->where('a.id_obat', $key);
         }
-        if ($year != '') {
-            $this->db->where('tahun', $year);
+        if ($bulan != '') {
+            $this->db->where('bulan', $bulan);
         }
         if ($group_by != '') {
             $this->db->group_by($group_by);
@@ -41,6 +38,78 @@ class M_data_pemakaian_obat extends CI_Model
         }
         return null;
     }
+
+    public function get_pemakaian($id_obat, $bulan, $tahun)
+    {
+        $this->db->select('a.id_obat, a.bulan, a.pemakaian');
+        $this->db->from('data_pemakaian_obat a');
+        $this->db->join('data_obat b', 'a.id_obat = b.id_obat');
+        // $this->db->where('a.pemakaian >', '0');
+
+
+        if ($id_obat != '') {
+            $this->db->where('a.id_obat', $id_obat);
+        }
+        if ($bulan != '') {
+            $this->db->where('bulan', $bulan);
+        }
+        if ($tahun != '') {
+            $this->db->where('tahun', $tahun);
+        }
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return null;
+    }
+
+    public function read_with_obat($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('data_pemakaian_obat a');
+        $this->db->join('data_obat b', 'a.id_obat = b.id_obat');
+        $this->db->group_by('a.id_obat');
+        $this->db->order_by('a.id_obat');
+
+        if ($tahun != '') {
+            $this->db->where('tahun', $tahun);
+        }
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+
+        return null;
+    }
+    public function read_tahun()
+    {
+        $this->db->select('*');
+        $this->db->from('data_pemakaian_obat');
+        $this->db->group_by('tahun');
+
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+
+        return null;
+    }
+
     public function read_laporan()
     {
         $this->db->select('*');
@@ -80,6 +149,7 @@ class M_data_pemakaian_obat extends CI_Model
         }
         return null;
     }
+
     public function sum_ls($year)
     {
         $query = $this->db->query("SELECT
@@ -87,6 +157,11 @@ class M_data_pemakaian_obat extends CI_Model
         ");
         $data = $query->result();
         return $data[0]->total_pemakaian;
+    }
+
+    public function create($data_obat)
+    {
+        return $this->db->insert('data_pemakaian_obat', $data_obat);
     }
 
     public function update($data_obat, $id_obat)
@@ -101,6 +176,7 @@ class M_data_pemakaian_obat extends CI_Model
     {
         return $this->db->count_all("data_pemakaian_obat");
     }
+
     public function get($id)
     {
         $this->db->select('*');
